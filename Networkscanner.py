@@ -11,8 +11,15 @@ def scan_port(ip, port):
             sock.settimeout(1)  # timeout of 1 second to find a connection 
             result = sock.connect_ex((ip,port)) # attempts to connect to the IP tuple
             if result == 0: #if connect_ex returns 0 means a port is open
-                return port
-
+                #get service name of the port
+                try:
+                     service = socket.getservbyport(port)
+                except OSError:
+                     service = "unknown"
+                return(port,service)
+            
+    except Exception:
+                     pass
     except Exception:
         pass
     return None # returns none if the port is closed
@@ -25,17 +32,17 @@ def scan_ports(ip,start_port,end_port):
         #submit the scan_port tasks for each port
         futures = [executor.submit(scan_port, ip, port) for port in range(start_port, end_port + 1)]
         for future in futures:
-            port=future.result()
-            if port: #if port is returned, its open, so add it to open ports
-                open_ports.append(port)
+            result=future.result()
+            if result: #if port is returned, its open, so add it to open ports
+                open_ports.append(result)
     return open_ports # returns a list of open ports
             
     # this the mai function to gather user input and  start the port scanning process
 def main():
     #prompt the user to enter IP ADDRESS and port range
-    target_ip=input("enter the IP ADDRESS to scan: ")
-    start_port=int(input("enter the starting port number: "))
-    end_port=int(input("enter the ending port number: "))
+    target_ip=input("Enter the IP ADDRESS to scan: ")
+    start_port=int(input("Enter the starting port number: "))
+    end_port=int(input("Enter the ending port number: "))
     print(f"Scanning {target_ip} from port {start_port} to {end_port}...")
 
     # calls the scan_ports function and stores the results
@@ -43,11 +50,13 @@ def main():
 
     #print the list of open ports or a message if no ports
     if open_ports:
-             print(f"Open ports :{open_ports}") 
+             print("Open Ports and thier Services: ")
+             for port, service in open_ports:
+               print(f"Port: {port}, Service: {service}")
     else:
             print("No open ports found ") 
 
             #runs the main fucntion if this script is done directly
 if __name__ =="__main__":
     main()
-            
+

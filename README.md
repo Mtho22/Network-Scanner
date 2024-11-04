@@ -31,6 +31,7 @@ To run the Simple Network Port Scanner, you need the following:
    python --version
 
 3. Run the Tool:
+
    python3 Networkscanner.py 
    or python Networkscanner.py
 

@@ -1,14 +1,13 @@
-# Network-Scanner
-The Network Scanner is a simple yet efficient tool designed to identify and list devices within a network. This project offers functionalities for detecting live hosts, scanning open ports, and retrieving basic information about connected devices. It serves as an excellent resource for learning network fundamentals, enhancing security awareness, and exploring network configurations.
+# Network Port and Protocol-Scanner
+The Network and Port Protocol Scanner is a straightforward yet powerful tool designed to identify and list devices within a network. This project offers functionalities for detecting live hosts, scanning open ports, retrieving protocol information, and gathering basic information about connected devices. It is a valuable resource for learning network fundamentals, enhancing security awareness, and exploring network configurations.
 
 
 # Features
-Simple TCP port scanner, designed to test which ports on a target IP address are open and accepting connections. The use of multithreading helps make the scanning process efficient by testing multiple ports at once.
-Features.
-  TCP Port Scanning: Efficiently tests which ports on a target IP address are open and accepting connections.
+TCP Port Scanning: Efficiently tests which ports on a target IP address are open and accepting connections.
+Protocol Identification: Detects the protocol running on each open port, providing more insight into network services.
 Multithreading Support: Utilizes multithreading to accelerate the scanning process by testing multiple ports simultaneously.
-User-Friendly Interface: Supports user-defined inputs for IP addresses and port ranges, making it easy to customize scans.
-Open Port Reporting: Displays a comprehensive list of open ports when found, enhancing visibility into network accessibility.
+User-Friendly Interface: Accepts user-defined inputs for IP addresses and port ranges, allowing for easy customization of scans.
+Open Port and Protocol Reporting: Displays a detailed list of open ports along with their respective protocols, enhancing network accessibility insights.
 
 # Requirments
 To run the Simple Network Port Scanner, you need the following:
@@ -61,6 +60,16 @@ Enter the starting port number: 1
 Enter the ending port number: 1024
 Scanning 192.168.1.1 from port 1 to 1024...
 Open ports: [22, 80, 443]
+
+Example output:
+
+yaml
+Copy code
+Scanning 192.168.1.1 from port 1 to 1024...
+Open ports and protocols:
+- Port 22: SSH
+- Port 80: HTTP
+- Port 443: HTTPS
 
 
 # DISCLAIMER 
